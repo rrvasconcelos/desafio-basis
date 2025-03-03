@@ -2,7 +2,10 @@
   <h1>Autores</h1>
 
   <div class="cadastrar-autor">
-    <button mat-stroked-button color="tertiary" [routerLink]="['register']">Cadastrar</button>
+    <button mat-flat-button color="primary" [routerLink]="['register']">
+      <mat-icon>add</mat-icon>
+      Cadastrar
+    </button>
   </div>
 
   <ng-container *ngIf="dataSource">
