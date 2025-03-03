@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>Autores</h1>
+
+  <div class="cadastrar-autor">
+    <button mat-stroked-button color="tertiary" [routerLink]="['register']">Cadastrar</button>
+  </div>
+
+  <ng-container *ngIf="dataSource">
+    <mat-card *ngIf="dataSource.length > 0"  appearance="outlined">
+      <mat-card-content>
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="Id">
+            <mat-header-cell *matHeaderCellDef> Id</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.id }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Nome">
+            <mat-header-cell *matHeaderCellDef> Nome</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.name }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Ações">
+            <mat-header-cell *matHeaderCellDef> Ações</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-mini-fab aria-label="edit" class="m-r-5" [routerLink]="['update', element.id]">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-mini-fab aria-label="edit" [routerLink]="['delete', element.id]" color="tertiary">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>
+
+
+

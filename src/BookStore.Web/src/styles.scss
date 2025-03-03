@@ -1,0 +1,51 @@
+@use '@angular/material' as mat;
+
+:root {
+  @include mat.toolbar-overrides((
+    container-background-color: var(--mat-sys-primary-container),
+    container-text-color: var(--mat-sys-primary),
+  ));
+}
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$red-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//Classes Formatadores
+
+.m-t-20{
+  margin-top: 20px;
+}
+
+.m-r-5{
+  margin-right: 5px;
+}
+
+
+//--- Classes Formatadores ---
+
+.container{
+  padding: 10px 16px;
+  max-width: 1440px;
+  margin: 10px auto;
+}
+
+.custom-delete-button {
+  background-color: #f44336; /* Vermelho */
+  color: white; /* Cor do texto */
+  &:hover {
+    background-color: #d32f2f; /* Vermelho escuro ao passar o mouse */
+  }
+}
+

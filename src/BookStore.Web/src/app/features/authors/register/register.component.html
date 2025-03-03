@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>Cadastrar Autor</h1>
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class="example-container">
+          <mat-form-field>
+            <mat-label>Insira um nome</mat-label>
+            <input
+              matInput
+              placeholder="nome do autor"
+              formControlName="nome"
+              required
+            />
+            @if (formGroup.get('nome')?.invalid && formGroup.get('nome')?.touched) {
+              <mat-error>{{errorMessage()}}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button type="button" routerLink="/authors">Cancelar</button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="formGroup.invalid">
+          Cadastrar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

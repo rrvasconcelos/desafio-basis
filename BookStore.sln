@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.SharedKernel", "src\BookStore.SharedKernel\BookStore.SharedKernel.csproj", "{DCA4DAB5-EB07-4B30-85D6-D236CB166030}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Domain", "src\BookStore.Domain\BookStore.Domain.csproj", "{BFC17B51-0EE5-4532-8AE2-616C05D97E79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E5C7637F-E892-4205-8137-3B65589D751C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{952BC2CE-C59B-40C9-99B0-3F024936664F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.UnitTests", "test\BookStore.UnitTests\BookStore.UnitTests.csproj", "{37E57140-40BE-4177-914C-E7480C4D0092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Application", "src\BookStore.Application\BookStore.Application.csproj", "{F09FBD32-5119-4738-9B3B-0B23D383762C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Infrastructure", "src\BookStore.Infrastructure\BookStore.Infrastructure.csproj", "{0E29ACBA-A819-4E7A-874D-E960A096DFA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Api", "src\BookStore.Api\BookStore.Api.csproj", "{B870E60E-85EB-4347-B02D-43DEEBE1B505}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCA4DAB5-EB07-4B30-85D6-D236CB166030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA4DAB5-EB07-4B30-85D6-D236CB166030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA4DAB5-EB07-4B30-85D6-D236CB166030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA4DAB5-EB07-4B30-85D6-D236CB166030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC17B51-0EE5-4532-8AE2-616C05D97E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC17B51-0EE5-4532-8AE2-616C05D97E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC17B51-0EE5-4532-8AE2-616C05D97E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC17B51-0EE5-4532-8AE2-616C05D97E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E57140-40BE-4177-914C-E7480C4D0092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E57140-40BE-4177-914C-E7480C4D0092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E57140-40BE-4177-914C-E7480C4D0092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E57140-40BE-4177-914C-E7480C4D0092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F09FBD32-5119-4738-9B3B-0B23D383762C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09FBD32-5119-4738-9B3B-0B23D383762C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09FBD32-5119-4738-9B3B-0B23D383762C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09FBD32-5119-4738-9B3B-0B23D383762C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E29ACBA-A819-4E7A-874D-E960A096DFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E29ACBA-A819-4E7A-874D-E960A096DFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E29ACBA-A819-4E7A-874D-E960A096DFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E29ACBA-A819-4E7A-874D-E960A096DFA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B870E60E-85EB-4347-B02D-43DEEBE1B505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B870E60E-85EB-4347-B02D-43DEEBE1B505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B870E60E-85EB-4347-B02D-43DEEBE1B505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B870E60E-85EB-4347-B02D-43DEEBE1B505}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DCA4DAB5-EB07-4B30-85D6-D236CB166030} = {E5C7637F-E892-4205-8137-3B65589D751C}
+		{BFC17B51-0EE5-4532-8AE2-616C05D97E79} = {E5C7637F-E892-4205-8137-3B65589D751C}
+		{37E57140-40BE-4177-914C-E7480C4D0092} = {952BC2CE-C59B-40C9-99B0-3F024936664F}
+		{F09FBD32-5119-4738-9B3B-0B23D383762C} = {E5C7637F-E892-4205-8137-3B65589D751C}
+		{0E29ACBA-A819-4E7A-874D-E960A096DFA9} = {E5C7637F-E892-4205-8137-3B65589D751C}
+		{B870E60E-85EB-4347-B02D-43DEEBE1B505} = {E5C7637F-E892-4205-8137-3B65589D751C}
+	EndGlobalSection
+EndGlobal

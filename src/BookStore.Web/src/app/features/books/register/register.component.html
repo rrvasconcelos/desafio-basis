@@ -1,0 +1,142 @@
+<div class="container">
+  <h1>Cadastrar Livro</h1>
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class="form-grid">
+          <!-- Título -->
+          <mat-form-field class="full-width">
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="title" placeholder="Título do livro" required>
+            <mat-error *ngIf="bookForm.get('title')?.hasError('required')">
+              Título é obrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Editora -->
+          <mat-form-field>
+            <mat-label>Editora</mat-label>
+            <input matInput formControlName="publisher" placeholder="Nome da editora" required>
+            <mat-error *ngIf="bookForm.get('publisher')?.hasError('required')">
+              Editora é obrigatória
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Edição -->
+          <mat-form-field>
+            <mat-label>Edição</mat-label>
+            <input matInput type="number" formControlName="edition" placeholder="Número da edição" required min="1">
+            <mat-error *ngIf="bookForm.get('edition')?.hasError('required')">
+              Edição é obrigatória
+            </mat-error>
+            <mat-error *ngIf="bookForm.get('edition')?.hasError('min')">
+              Edição deve ser maior que 0
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Ano de Publicação -->
+          <mat-form-field>
+            <mat-label>Ano de Publicação</mat-label>
+            <input matInput formControlName="publicationYear" placeholder="Ex: 2023" required>
+            <mat-error *ngIf="bookForm.get('publicationYear')?.hasError('required')">
+              Ano de publicação é obrigatório
+            </mat-error>
+            <mat-error *ngIf="bookForm.get('publicationYear')?.hasError('pattern')">
+              Formato inválido. Use 4 dígitos (ex: 2023)
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Autores -->
+          <mat-form-field class="full-width">
+            <mat-label>Autores</mat-label>
+            <mat-select formControlName="authorsId" multiple required>
+              <mat-option *ngFor="let author of authors()" [value]="author.id">
+                {{ author.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="bookForm.get('authorsId')?.hasError('required')">
+              Selecione pelo menos um autor
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Disciplinas/Assuntos -->
+          <mat-form-field class="full-width">
+            <mat-label>Disciplinas</mat-label>
+            <mat-select formControlName="subjectsId" multiple required>
+              <mat-option *ngFor="let subject of subjects()" [value]="subject.id">
+                {{ subject.description }} <!-- Alterado de subject.description para subject.name, se for o caso -->
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="bookForm.get('subjectsId')?.hasError('required')">
+              Selecione pelo menos uma disciplina
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Preços -->
+        <div class="prices-section">
+          <h3>Preços</h3>
+          <mat-divider></mat-divider>
+
+          <div formArrayName="prices" class="prices-container">
+            <div *ngFor="let priceGroup of pricesArray.controls; let i = index" [formGroupName]="i" class="price-item">
+              <div class="price-controls">
+                <mat-form-field>
+                  <mat-label>Valor</mat-label>
+                  <input matInput type="number" formControlName="price" placeholder="0.00" required step="0.01" min="0.01">
+                  <span matTextPrefix>R$&nbsp;</span>
+                  <mat-error *ngIf="priceGroup.get('price')?.hasError('required')">
+                    Valor é obrigatório
+                  </mat-error>
+                  <mat-error *ngIf="priceGroup.get('price')?.hasError('min')">
+                    Valor deve ser maior que zero
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Tipo</mat-label>
+                  <mat-select formControlName="purchaseType" required>
+                    <mat-option *ngFor="let type of purchaseTypes" [value]="type.value">
+                      {{ type.label }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="priceGroup.get('purchaseType')?.hasError('required')">
+                    Tipo é obrigatório
+                  </mat-error>
+                </mat-form-field>
+
+                <button
+                  type="button"
+                  mat-icon-button
+                  color="warn"
+                  (click)="removePrice(i)"
+                  [disabled]="pricesArray.length <= 1"
+                  aria-label="Remover preço">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-price-button">
+            <button type="button" mat-stroked-button (click)="addPrice()">
+              <mat-icon>add</mat-icon> Adicionar Preço
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-button type="button" routerLink="/books">Cancelar</button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="bookForm.invalid">
+          Cadastrar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

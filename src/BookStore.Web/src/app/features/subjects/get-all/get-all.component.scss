@@ -1,0 +1,31 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.cadastrar-subject {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.m-r-5 {
+  margin-right: 5px;
+}
+
+.no-records {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+mat-table {
+  width: 100%;
+}

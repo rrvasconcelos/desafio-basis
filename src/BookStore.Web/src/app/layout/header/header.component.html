@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Book Store</span>
+  <span class="example-spacer"></span>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/subjects']">
+      <span>Subjects</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/books']">
+      <span>Books</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/authors']">
+      <span>Authors</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

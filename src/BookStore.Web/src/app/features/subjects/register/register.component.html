@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>Cadastrar Assunto</h1>
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class="example-container">
+          <mat-form-field>
+            <mat-label>Insira uma descrição</mat-label>
+            <input
+              matInput
+              placeholder="Descrição do assunto"
+              formControlName="description"
+              required
+            />
+            @if (formGroup.get('description')?.invalid && formGroup.get('description')?.touched) {
+              <mat-error>{{errorMessage()}}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button type="button" routerLink="/subjects">Cancelar</button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="formGroup.invalid">
+          Cadastrar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
