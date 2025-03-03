@@ -43,7 +43,6 @@ Um sistema completo para gerenciamento de livros, autores e assuntos, desenvolvi
 3. **Acesse as aplicações**
    * Frontend: [http://localhost:4200](http://localhost:4200/)
    * API: [http://localhost:8080](http://localhost:8080/)
-   * Swagger: [http://localhost:8080/swagger](http://localhost:8080/swagger)
 4. **Para parar a aplicação**
    ```bash
    docker-compose down
