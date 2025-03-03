@@ -1,4 +1,3 @@
-// models/book.ts
 export interface Book {
   id: number;
   title: string;
@@ -7,32 +6,30 @@ export interface Book {
   publicationYear: string;
   authorIds: number[];
   bookPrices: BookPrice[];
-  subjectsId?: number[]; // Adicionado para compatibilidade com a API
+  subjectsId?: number[]; 
   createdAt?: string;
   active?: boolean;
 }
 
-// Interface para os preços retornados pela API
 export interface BookPrice {
-  value?: number; // Campo usado pela API
-  price?: number; // Campo usado pelo frontend
+  value?: number; 
+  price?: number; 
   purchaseType: PurchaseType;
 }
 
-// Interface para a requisição ao backend
 export interface BookRequest {
   id?: number;
   title: string;
   publisher: string;
   edition: number;
   publicationYear: string;
-  prices: Price[]; // Nome usado na requisição
-  authorsId: number[]; // Nome usado na requisição
-  subjectsId: number[]; // Nome usado na requisição
+  prices: Price[]; 
+  authorsId: number[]; 
+  subjectsId: number[]; 
 }
 
 export interface Price {
-  price: number; // Mantemos como number pois é obrigatório para o envio
+  price: number; 
   purchaseType: PurchaseType;
 }
 

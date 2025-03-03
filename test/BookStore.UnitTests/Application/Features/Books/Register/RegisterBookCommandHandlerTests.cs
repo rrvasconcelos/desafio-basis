@@ -26,11 +26,10 @@ public class RegisterBookCommandHandlerTests
         _authorRepositoryMock = new Mock<IAuthorRepository>();
         _subjectRepositoryMock = new Mock<ISubjectRepository>(); 
         _unitOfWorkMock = new Mock<IUnitOfWork>();
-        
-        // Passar o repositório de assuntos para o handler
+
         _handler = new RegisterBookCommandHandler(
             _bookRepositoryMock.Object,
-            _subjectRepositoryMock.Object, // Adicione essa linha
+            _subjectRepositoryMock.Object, 
             _authorRepositoryMock.Object,
             _unitOfWorkMock.Object);
     }
@@ -137,7 +136,7 @@ public class RegisterBookCommandHandlerTests
         _bookRepositoryMock.Setup(r => r.GetByTitleAsync(command.Title, CancellationToken.None))
             .ReturnsAsync(default(Book));
 
-        // Configure o mock do repositório de assuntos para retornar null
+
         _subjectRepositoryMock.Setup(r => r.GetByIdAsync(SubjectId, CancellationToken.None))
             .ReturnsAsync(default(Subject));
 

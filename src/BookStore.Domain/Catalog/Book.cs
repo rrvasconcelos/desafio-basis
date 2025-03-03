@@ -185,10 +185,9 @@ public class Book : Entity
     {
         ValidateActive("Cannot update subjects for inactive book");
 
-        // Certifique-se de que subjects não é null
         if (subjects == null || subjects.Count == 0)
         {
-            return; // Ou lance uma exceção se desejar
+            return;
         }
 
         foreach (var subject in subjects.Where(subject => BookSubjects.All(bs => bs.SubjectId != subject.Id)))

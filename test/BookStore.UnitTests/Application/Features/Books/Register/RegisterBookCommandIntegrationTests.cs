@@ -29,7 +29,7 @@ public class RegisterBookCommandIntegrationTests
 
         _handler = new RegisterBookCommandHandler(
             _bookRepositoryMock.Object,
-            _subjectRepositoryMock.Object, // Aqui você deve passar o mock do repositório de assuntos.
+            _subjectRepositoryMock.Object,
             _authorRepositoryMock.Object,
             _unitOfWorkMock.Object);
     }
@@ -48,7 +48,7 @@ public class RegisterBookCommandIntegrationTests
             AuthorId);
 
         var author = new Author(AuthorId[0], "Robert C. Martin");
-        var subject = new Subject("Software Engineering"); // Cria um Subject com descrição
+        var subject = new Subject("Software Engineering"); 
 
         _bookRepositoryMock.Setup(r => r.GetByTitleAsync(command.Title, CancellationToken.None))
             .ReturnsAsync(default(Book));
@@ -57,7 +57,7 @@ public class RegisterBookCommandIntegrationTests
             .ReturnsAsync(author);
 
         _subjectRepositoryMock.Setup(r => r.GetByIdAsync(SubjectId, CancellationToken.None))
-            .ReturnsAsync(subject); // Simula que o assunto existe
+            .ReturnsAsync(subject); 
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -90,7 +90,7 @@ public class RegisterBookCommandIntegrationTests
             .ReturnsAsync(new Author(AuthorId[0], "Robert C. Martin"));
 
         _subjectRepositoryMock.Setup(r => r.GetByIdAsync(SubjectId, CancellationToken.None))
-            .ReturnsAsync(default(Subject)); // Simula a ausência do assunto
+            .ReturnsAsync(default(Subject));
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);

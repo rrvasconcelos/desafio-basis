@@ -47,12 +47,9 @@ export class AuthorService {
     let errorMessage = 'Ocorreu um erro desconhecido!';
 
     if (error.error instanceof ErrorEvent) {
-      // Erro do lado do cliente
       errorMessage = `Erro: ${error.error.message}`;
     } else {
-      // Erro retornado pelo backend
       if (error.error && typeof error.error === 'object') {
-        // Verifica se existe a propriedade detail no objeto de erro
         if (error.error.detail) {
           errorMessage = error.error.detail;
         } else if (error.error.title) {

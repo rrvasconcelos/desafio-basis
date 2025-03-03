@@ -148,7 +148,6 @@ export class RegisterComponent {
     if (this.bookForm.valid) {
       const formValues = this.bookForm.value;
 
-      // Criar objeto para enviar ao serviço
       const bookData = {
         title: formValues.title,
         publisher: formValues.publisher,

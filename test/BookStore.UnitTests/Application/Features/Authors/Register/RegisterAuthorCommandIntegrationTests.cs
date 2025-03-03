@@ -30,12 +30,11 @@ public class RegisterAuthorCommandIntegrationTests
         var command = new RegisterAuthorCommand("");
         var validators = new List<IValidator<RegisterAuthorCommand>>
         {
-            new RegisterAuthorCommandValidator() // Certifique-se de que este validador exista e esteja correto
+            new RegisterAuthorCommandValidator()
         };
 
         var validationBehavior = new ValidationPipelineBehavior<RegisterAuthorCommand, Result<AuthorResponse>>(validators);
 
-        // Delegate para chamar o handler
         RequestHandlerDelegate<Result<AuthorResponse>> next = () => _handler.Handle(command, CancellationToken.None);
 
         // Act
@@ -43,8 +42,8 @@ public class RegisterAuthorCommandIntegrationTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.False(result.IsSuccess); // Verifica se o resultado indica falha
-        Assert.NotNull(result.Error); // Verifica se há um erro no resultado
+        Assert.False(result.IsSuccess); 
+        Assert.NotNull(result.Error); 
     }
 }
 

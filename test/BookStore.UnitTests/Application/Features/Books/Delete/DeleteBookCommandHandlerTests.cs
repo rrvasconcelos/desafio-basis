@@ -26,7 +26,6 @@ public class DeleteBookCommandHandlerTests
 
         var book = new Book("Clean Code", "Prentice Hall", 1, "2008", bookId);
 
-        // Simula que o livro existe
         _bookRepositoryMock.Setup(r => r.GetByIdAsync(bookId, CancellationToken.None))
             .ReturnsAsync(book);
 
@@ -44,7 +43,6 @@ public class DeleteBookCommandHandlerTests
         const int bookId = 1;
         var command = new DeleteBookCommand(bookId);
 
-        // Simula que o livro não existe
         _bookRepositoryMock.Setup(r => r.GetByIdAsync(bookId, CancellationToken.None))
             .ReturnsAsync(default(Book));
 

@@ -113,7 +113,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
         decimal price = 29.99m;
 
         // Act
@@ -132,7 +132,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
         var initialPrice = 29.99m;
         var updatedPrice = 34.99m;
     
@@ -154,7 +154,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
 
         // Act
         Action act = () => book.AddPrice(purchaseType, invalidPrice);
@@ -169,7 +169,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
         decimal price = 29.99m;
     
         book.AddPrice(purchaseType, price);
@@ -186,7 +186,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
 
         // Act
         Action act = () => book.RemovePrice(purchaseType);
@@ -201,7 +201,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
         decimal price = 29.99m;
     
         book.AddPrice(purchaseType, price);
@@ -218,7 +218,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
 
         // Act
         Action act = () => book.GetPrice(purchaseType);
@@ -233,8 +233,8 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var onlinePurchaseType = PurchaseType.Online; // Usar o enum PurchaseType
-        var storePurchaseType = PurchaseType.PhysicalStore; // Usar o enum PurchaseType
+        var onlinePurchaseType = PurchaseType.Online;  
+        var storePurchaseType = PurchaseType.PhysicalStore; 
     
         book.AddPrice(onlinePurchaseType, 29.99m);
         book.AddPrice(storePurchaseType, 34.99m);
@@ -253,7 +253,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
     
         book.AddPrice(purchaseType, 29.99m);
 
@@ -269,7 +269,7 @@ public class BookTests
     {
         // Arrange
         var book = CreateDefaultBook();
-        var purchaseType = PurchaseType.Online; // Usar o enum PurchaseType
+        var purchaseType = PurchaseType.Online; 
 
         // Act
         var result = book.HasPrice(purchaseType);
@@ -277,6 +277,4 @@ public class BookTests
         // Assert
         result.Should().BeFalse();
     }
-    
-    // Continue com outros testes conforme necessário...
 }

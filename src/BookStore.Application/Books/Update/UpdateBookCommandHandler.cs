@@ -35,7 +35,6 @@ public sealed class UpdateBookCommandHandler(
             return Result.Failure<BookResponse>(BookError.NotFound);
         }
 
-        // Verifica se todos os assuntos existem
         var subjects = new List<Subject>();
         foreach (var subjectId in request.SubjectsId)
         {

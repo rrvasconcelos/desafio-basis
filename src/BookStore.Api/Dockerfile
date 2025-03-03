@@ -1,5 +1,4 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
@@ -7,10 +6,22 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/BookStore.Api/BookStore.Api.csproj", "src/BookStore.Api/"]
-RUN dotnet restore "src/BookStore.Api/BookStore.Api.csproj"
+
+# Copia os arquivos .csproj de todas as camadas
+COPY ["BookStore.Api/BookStore.Api.csproj", "BookStore.Api/"]
+COPY ["BookStore.Application/BookStore.Application.csproj", "BookStore.Application/"]
+COPY ["BookStore.Domain/BookStore.Domain.csproj", "BookStore.Domain/"]
+COPY ["BookStore.Infrastructure/BookStore.Infrastructure.csproj", "BookStore.Infrastructure/"]
+COPY ["BookStore.SharedKernel/BookStore.SharedKernel.csproj", "BookStore.SharedKernel/"]
+
+# Restaura as dependências
+RUN dotnet restore "BookStore.Api/BookStore.Api.csproj"
+
+# Copia todos os arquivos restantes da estrutura
 COPY . .
-WORKDIR "/src/src/BookStore.Api"
+
+# Compila a aplicação
+WORKDIR "/src/BookStore.Api"
 RUN dotnet build "BookStore.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

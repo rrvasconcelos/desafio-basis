@@ -3,6 +3,7 @@ using BookStore.Api;
 using BookStore.Api.Extensions;
 using BookStore.Application;
 using BookStore.Infrastructure;
+using BookStore.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
+app.MigrateDatabase();
+
 app.UseCors("AllowAllOrigins");
 
 app.MapEndpoints();
@@ -31,8 +34,6 @@ app.MapEndpoints();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    
-    //add migration
 }
 
 app.UseExceptionHandler();

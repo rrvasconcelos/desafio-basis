@@ -15,7 +15,6 @@ import { forkJoin } from 'rxjs';
 import { Author } from '../../authors/models/author';
 import { Subject } from '../../subjects/models/subject';
 
-// Interface para representar a resposta real da API
 interface BookResponse {
   id: number;
   authorIds: number[];
@@ -93,7 +92,7 @@ export class GetAllComponent implements OnInit {
   }
 
   getAuthorName(authorId: any): string {
-    const id = Number(authorId); // Converte para número
+    const id = Number(authorId);
     const author = this.authors().find(a => a.id === id);
     return author?.name || 'Autor desconhecido';
   }

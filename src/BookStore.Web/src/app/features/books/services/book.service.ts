@@ -26,7 +26,6 @@ export class BookService {
   }
 
   addBook(bookData: any): Observable<Book> {
-    // Criar objeto no formato que o backend espera
     const requestData: BookRequest = {
       title: bookData.title,
       publisher: bookData.publisher,
@@ -45,7 +44,6 @@ export class BookService {
   }
 
   updateBook(bookData: any): Observable<Book> {
-    // Criar objeto no formato que o backend espera
     const requestData: BookRequest = {
       id: bookData.id,
       title: bookData.title,
@@ -72,12 +70,9 @@ export class BookService {
     let errorMessage = 'Ocorreu um erro desconhecido!';
 
     if (error.error instanceof ErrorEvent) {
-      // Erro do lado do cliente
       errorMessage = `Erro: ${error.error.message}`;
     } else {
-      // Erro retornado pelo backend
       if (error.error && typeof error.error === 'object') {
-        // Verifica se existe a propriedade detail no objeto de erro
         if (error.error.detail) {
           errorMessage = error.error.detail;
         } else if (error.error.title) {

@@ -13,13 +13,13 @@ public class UpdateBookCommandHandlerTests
 {
     private readonly Mock<IBookRepository> _bookRepositoryMock;
     private readonly Mock<IAuthorRepository> _authorRepositoryMock;
-    private readonly Mock<ISubjectRepository> _subjectRepositoryMock; // Mock do repositório de assuntos
+    private readonly Mock<ISubjectRepository> _subjectRepositoryMock; 
     private readonly UpdateBookCommandHandler _handler;
     private readonly Mock<IUnitOfWork> _unitOfWorkMock;
 
     private readonly int[] AuthorId = [1];
     private const int BookId = 1;
-    private const int SubjectId = 1; // ID do assunto para os testes
+    private const int SubjectId = 1; 
 
     public UpdateBookCommandHandlerTests()
     {
@@ -70,7 +70,7 @@ public class UpdateBookCommandHandlerTests
             .ReturnsAsync(existingBook);
 
         _subjectRepositoryMock.Setup(r => r.GetByIdAsync(SubjectId, CancellationToken.None))
-            .ReturnsAsync(subject); // Simula que o assunto existe
+            .ReturnsAsync(subject);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -113,7 +113,7 @@ public class UpdateBookCommandHandlerTests
             .ReturnsAsync(new Author(AuthorId[0], "Robert C. Martin"));
 
         _bookRepositoryMock.Setup(r => r.GetByIdAsync(BookId, CancellationToken.None))
-            .ReturnsAsync(default(Book)); // Simula que o livro não foi encontrado
+            .ReturnsAsync(default(Book)); 
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -136,7 +136,7 @@ public class UpdateBookCommandHandlerTests
             .ReturnsAsync(new Book("Old Title", "Old Publisher", 1, "2000", BookId));
 
         _subjectRepositoryMock.Setup(r => r.GetByIdAsync(SubjectId, CancellationToken.None))
-            .ReturnsAsync(default(Subject)); // Simula que o assunto não foi encontrado
+            .ReturnsAsync(default(Subject)); 
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);

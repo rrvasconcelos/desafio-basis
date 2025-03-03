@@ -80,14 +80,12 @@ export class UpdateComponent {
   ) {
     this.bookForm = this.createBookForm();
 
-    // Obter o ID do livro da URL
     this.route.paramMap
       .pipe(takeUntilDestroyed())
       .subscribe(params => {
         const id = params.get('id');
         if (id) {
           this.bookId.set(+id);
-          // Carregar dados em paralelo
           this.loadAllData(+id);
         }
       });
@@ -109,7 +107,6 @@ export class UpdateComponent {
     let priceValue = 0;
 
     if (price) {
-      // Verificar se é um BookPrice (da API) ou Price (do form)
       if ('value' in price && price.value !== undefined) {
         priceValue = price.value;
       } else if ('price' in price && price.price !== undefined) {
@@ -138,7 +135,6 @@ export class UpdateComponent {
   }
 
   loadAllData(id: number): void {
-    // Carregar livro, autores e disciplinas em paralelo
     forkJoin({
       book: this.bookService.getById(id),
       authors: this.authorService.getAuthors(),
@@ -149,12 +145,10 @@ export class UpdateComponent {
         next: (data) => {
           console.log('Data loaded:', data);
 
-          // Armazenar os dados
           this.authors.set(data.authors);
           this.subjects.set(data.subjects);
           this.bookData.set(data.book);
 
-          // Agora que temos todos os dados, podemos preencher o formulário
           this.populateForm(data.book);
         },
         error: (error) => {
@@ -171,12 +165,10 @@ export class UpdateComponent {
   populateForm(book: Book): void {
     console.log('Populating form with book:', book);
 
-    // Limpar o array de preços existente
     while (this.pricesArray.length) {
       this.pricesArray.removeAt(0);
     }
 
-    // Adicionar preços do livro ao formulário
     if (book.bookPrices && book.bookPrices.length > 0) {
       book.bookPrices.forEach(priceItem => {
         const priceValue = priceItem.value !== undefined ? priceItem.value :
@@ -189,11 +181,9 @@ export class UpdateComponent {
         this.pricesArray.push(this.createPriceGroup(price));
       });
     } else {
-      // Se não houver preços, adicione um vazio
       this.addPrice();
     }
 
-    // Verificar a situação dos IDs
     const availableAuthorIds = this.authors().map(a => a.id);
     const availableSubjectIds = this.subjects().map(s => s.id);
 
@@ -202,7 +192,6 @@ export class UpdateComponent {
     console.log('Book subject IDs:', book.subjectsId);
     console.log('Available subject IDs:', availableSubjectIds);
 
-    // Definir valores no formulário
     this.bookForm.patchValue({
       title: book.title,
       publisher: book.publisher,
@@ -210,36 +199,28 @@ export class UpdateComponent {
       publicationYear: book.publicationYear
     });
 
-    // Lidar com o problema de IDs que não existem nas listas
-    // Para autores, usamos os originais se houver correspondência, senão usamos o primeiro disponível
     if (book.authorIds && book.authorIds.some(id => availableAuthorIds.includes(id))) {
-      // Pelo menos um autor do livro existe na lista disponível
       this.bookForm.get('authorsId')?.setValue(
         book.authorIds.filter(id => availableAuthorIds.includes(id))
       );
     } else if (availableAuthorIds.length > 0) {
-      // Nenhum autor do livro existe na lista, selecionar o primeiro disponível
       this.bookForm.get('authorsId')?.setValue([availableAuthorIds[0]]);
       this.snackBar.open('Os autores originais do livro não foram encontrados. Um autor substituto foi selecionado.', 'OK', {
         duration: 5000
       });
     }
 
-    // Mesma lógica para disciplinas
     if (book.subjectsId && book.subjectsId.some(id => availableSubjectIds.includes(id))) {
-      // Pelo menos uma disciplina do livro existe na lista disponível
       this.bookForm.get('subjectsId')?.setValue(
         book.subjectsId.filter(id => availableSubjectIds.includes(id))
       );
     } else if (availableSubjectIds.length > 0) {
-      // Nenhuma disciplina do livro existe na lista, selecionar a primeira disponível
       this.bookForm.get('subjectsId')?.setValue([availableSubjectIds[0]]);
       this.snackBar.open('As disciplinas originais do livro não foram encontradas. Uma disciplina substituta foi selecionada.', 'OK', {
         duration: 5000
       });
     }
 
-    // Verificar valores finais
     console.log('Form values after all updates:', this.bookForm.value);
   }
 
@@ -247,7 +228,6 @@ export class UpdateComponent {
     if (this.bookForm.valid) {
       const formValues = this.bookForm.value;
 
-      // Criar objeto para enviar ao serviço
       const bookData: BookRequest = {
         id: this.bookId(),
         title: formValues.title,

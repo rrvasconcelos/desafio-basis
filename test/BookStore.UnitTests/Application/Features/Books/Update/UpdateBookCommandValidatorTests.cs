@@ -9,8 +9,8 @@ public class RegisterBookCommandValidatorTests
 {
     private readonly RegisterBookCommandValidator _validator = new();
     
-    private static readonly int[] DefaultSubjectsId = { 1 }; // ID padrão do assunto
-    private readonly int[] DefaultAuthorId = [1]; // ID padrão do autor
+    private static readonly int[] DefaultSubjectsId = { 1 }; 
+    private readonly int[] DefaultAuthorId = [1]; 
 
     private RegisterBookCommand CreateCommand(string title = "Clean Code", string publisher = "Prentice Hall", 
         int edition = 1, string publicationYear = "2008", decimal price = 29.99m, 
@@ -24,8 +24,8 @@ public class RegisterBookCommandValidatorTests
             edition, 
             publicationYear, 
             [new PricesDto(price, purchaseType)],
-            subjectsId ?? DefaultSubjectsId, // Usa o ID padrão se nenhum for passado
-            authorId); // Permite passar um AuthorId específico
+            subjectsId ?? DefaultSubjectsId, 
+            authorId); 
     }
 
     [Theory]
@@ -235,7 +235,7 @@ public class RegisterBookCommandValidatorTests
     public void Validate_ShouldHaveError_WhenSubjectsIdIsEmpty()
     {
         // Arrange
-        var command = CreateCommand(subjectsId: new int[0]); // Passa um array vazio
+        var command = CreateCommand(subjectsId: new int[0]); 
 
         // Act
         var result = _validator.TestValidate(command);

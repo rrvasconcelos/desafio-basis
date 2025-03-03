@@ -10,13 +10,13 @@ public class RegisterBookCommandValidatorTests
 {
     private readonly RegisterBookCommandValidator _validator = new();
 
-    private static readonly int[] DefaultSubjectsId = { 1 }; // ID padrão do assunto
+    private static readonly int[] DefaultSubjectsId = { 1 }; 
     private static readonly int[] DefaultAuthorId = [1];
 
     private RegisterBookCommand CreateCommand(string title = "Clean Code", string publisher = "Prentice Hall",
         int edition = 1, string publicationYear = "2008", decimal price = 29.99m,
         PurchaseType purchaseType = PurchaseType.Online, int[] subjectsId = null,
-        int[] authorId = null) // Mude para null
+        int[] authorId = null) 
     {
         authorId ??= DefaultAuthorId;
 
@@ -25,9 +25,9 @@ public class RegisterBookCommandValidatorTests
             publisher,
             edition,
             publicationYear,
-            new List<PricesDto> { new PricesDto(price, purchaseType) }, // Use List<PricesDto> em vez de array
-            subjectsId ?? DefaultSubjectsId, // Usa o ID padrão se nenhum for passado
-            authorId); // Permite passar um AuthorId específico
+            new List<PricesDto> { new PricesDto(price, purchaseType) },
+            subjectsId ?? DefaultSubjectsId, 
+            authorId); 
     }
 
     [Theory]
@@ -200,8 +200,8 @@ public class RegisterBookCommandValidatorTests
             0,
             string.Empty,
             [new PricesDto(0, PurchaseType.Online)],
-            [], // Passa um array vazio,
-            []); // AuthorId inválido
+            [], 
+            []); 
 
         // Act
         var result = _validator.TestValidate(command);
@@ -212,8 +212,8 @@ public class RegisterBookCommandValidatorTests
         result.ShouldHaveValidationErrorFor(x => x.Edition);
         result.ShouldHaveValidationErrorFor(x => x.PublicationYear);
         result.ShouldHaveValidationErrorFor(x => x.Price);
-        result.ShouldHaveValidationErrorFor(x => x.AuthorsId); // Verifica AuthorId
-        result.ShouldHaveValidationErrorFor(x => x.SubjectsId); // Verifica SubjectsId
+        result.ShouldHaveValidationErrorFor(x => x.AuthorsId); 
+        result.ShouldHaveValidationErrorFor(x => x.SubjectsId); 
     }
 
     [Fact]
@@ -234,7 +234,7 @@ public class RegisterBookCommandValidatorTests
     public void Validate_ShouldHaveError_WhenAuthorIdIsEmpty()
     {
         // Arrange
-        var command = CreateCommand(authorId: [0]); // Muda para 0 para verificar a validação
+        var command = CreateCommand(authorId: [0]); 
 
         // Act
         var result = _validator.TestValidate(command);
@@ -248,7 +248,7 @@ public class RegisterBookCommandValidatorTests
     public void Validate_ShouldHaveError_WhenSubjectsIdIsEmpty()
     {
         // Arrange
-        var command = CreateCommand(subjectsId: new int[0]); // Passa um array vazio
+        var command = CreateCommand(subjectsId: new int[0]);
 
         // Act
         var result = _validator.TestValidate(command);
